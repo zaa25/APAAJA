@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday 💛</title>
+
+<style>
+body{
+     margin:0;
+    font-family:'Poppins',sans-serif;
+
+    background-image: url("background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    overflow:hidden;
+}
+.page{
+    display:none;
+    width:90%;
+    max-width:380px;
+}
+.page.active{
+    display:block;
+}
+.card{
+    background:#fff;
+    border-radius:25px;
+    padding:25px 20px;
+    text-align:center;
+    border:4px dashed #FFB703;
+}
+.photo{
+    width:150px;
+    height:150px;
+    border-radius:20px;
+    overflow:hidden;
+    margin:0 auto 15px;
+    border:4px solid #FFB703;
+}
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+h1,h2{
+    color:#FF9800;
+}
+p{
+    color:#555;
+    font-size:14px;
+}
+.btn{
+    margin-top:20px;
+    background:#FFB703;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 6px #e09f00;
+}
+.btn:active{
+    transform:translateY(3px);
+    box-shadow:0 3px #e09f00;
+}
+.btn.red{
+    background:#FF6B6B;
+    box-shadow:none;
+}
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+.message{
+    background:#FFF7E0;
+    border-radius:20px;
+    padding:18px;
+    border:3px solid #FFB703;
+    font-size:14px;
+}
+.music{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:white;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    color:#FF9800;
+}
+.confetti{
+    position:absolute;
+    width:8px;
+    height:8px;
+    top:-10px;
+    animation:fall linear infinite;
+}
+@keyframes fall{
+    to{transform:translateY(110vh) rotate(360deg);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="music">🎵</div>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <div class="card">
+        <div class="photo">
+            <img src="nailong.jpg">
+        </div>
+        <h1>Hiii </h1>
+        <p>(｡•ᴗ•｡)</p>
+        <p>Click the next button!! (づ｡◕‿‿◕｡)づ♡</p>
+        <button class="btn" onclick="nextPage(2)">Next!! ^w^</button>
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <div class="card">
+        <div class="photo">
+            <img src="nailong2.jpg">
+        </div>
+        <h2>Do you want to open it?</h2>
+        <div class="buttons">
+            <button class="btn" onclick="nextPage(3)">Open it</button>
+            <button class="btn red" id="noBtn">No ty</button>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+    <div class="card">
+        <div class="photo">
+            <img src="nailong3.jpg">
+        </div>
+
+        <div class="message">
+            <h2>🎉 Happy Birthday! 🎉</h2>
+            <p>Cieee udah kepala tiga yaa 💛</p>
+            <p>Semoga semakin bijak, bahagia, dewasa,
+            dan tentunya semakin sayang aku 😆✨</p>
+            <p>
+            Hari ini yang spesial bukan cuma usiamu,
+            tapi karena aku masih bisa ada di samping kamu.
+            Terima kasih sudah tumbuh menjadi versi terbaikmu 🌻
+            </p>
+            <p>🥂 Cheers to new decade, love!</p>
+            <b>I love you, always.</b>
+        </div>
+
+        <button class="btn" onclick="nextPage(1)">Start Over 🤍</button>
+    </div>
+</div>
+
+<script>
+function nextPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page'+n).classList.add('active');
+
+    if(n===3) confetti();
+}
+
+// tombol No ty kabur
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",()=>{
+    noBtn.style.transform=
+    `translate(${Math.random()*150-75}px,${Math.random()*100-50}px)`;
+});
+
+// confetti
+function confetti(){
+    for(let i=0;i<40;i++){
+        const c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"vw";
+        c.style.animationDuration=(Math.random()*3+2)+"s";
+        c.style.backgroundColor=
+        ["#FF6B6B","#FFD93D","#6BCB77","#4D96FF"][Math.floor(Math.random()*4)];
+        document.body.appendChild(c);
+    }
+}
+</script>
+
+</body>
+</html>
